@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 #->SIGNALS
-signal laser_is_shooting
+signal laser_is_shooting(position)
 signal grenade_is_fire
 
 const SPEED = 500
@@ -17,7 +17,12 @@ func _process(_delta):
 	
 	#laser shooting
 	if Input.is_action_just_pressed("primary action") and can_laser:
-		laser_is_shooting.emit()
+		#pickup a random positiom from marker 2d
+		var laser_markers = $LaserStartPositions.get_children()
+		var selected_random_laser = laser_markers[randi() % laser_markers.size()]
+
+		#emit the position
+		laser_is_shooting.emit(selected_random_laser.global_position)
 		can_laser = false
 		$LaserTimer.start()
 		
