@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 #->SIGNALS
-signal laser_is_shooting(position)
-signal grenade_is_fire(position)
+signal laser_is_shooting(position, direciton)
+signal grenade_is_fire(position, direction)
 
 const SPEED = 500
 var can_laser:bool = true
@@ -15,14 +15,21 @@ func _process(_delta):
 	move_and_slide()
 	velocity = direction * 500 
 	
+	#rotate player
+	look_at(get_global_mouse_position())
+	
 	#laser shooting
+	var dir = (get_global_mouse_position() - position).normalized()
 	if Input.is_action_just_pressed("primary action") and can_laser:
+		#emit particles
+		$GPUParticles2D.emitting = true
 		#pickup a random positiom from marker 2d
 		var laser_markers = $LaserStartPositions.get_children()
 		var selected_random_laser = laser_markers[randi() % laser_markers.size()]
 
+		
 		#emit the position
-		laser_is_shooting.emit(selected_random_laser.global_position)
+		laser_is_shooting.emit(selected_random_laser.global_position, dir)
 		
 		can_laser = false
 		$LaserTimer.start()
@@ -30,8 +37,7 @@ func _process(_delta):
 	#launch granade
 	if Input.is_action_just_pressed("secondary action") and can_granade:
 		var pos = $LaserStartPositions.get_children()[0].global_position
-		
-		grenade_is_fire.emit(pos)
+		grenade_is_fire.emit(pos, dir)
 		can_granade = false
 		$GranadeTimer.start()
 

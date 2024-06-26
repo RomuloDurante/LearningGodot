@@ -1,17 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctftcfsngvuui"]
+[gd_scene load_steps=6 format=3 uid="uid://ctftcfsngvuui"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_rmhju"]
 [ext_resource type="Texture2D" uid="uid://b1enye26nproy" path="res://graphics/player/player.png" id="1_v1edj"]
+[ext_resource type="Texture2D" uid="uid://cw0fh3uxu2w20" path="res://graphics/decals/white.png" id="3_alvpy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p2le3"]
 radius = 69.029
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hkv3m"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 16.18
+initial_velocity_min = 498.02
+initial_velocity_max = 505.93
+gravity = Vector3(0, 50, 0)
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_min = 0.5
+scale_max = 0.5
+color = Color(0, 0.72549, 0.72549, 0.588235)
+anim_speed_min = 16.0
+anim_speed_max = 16.0
+turbulence_noise_strength = 1.85
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(2, -1)
+collision_mask = 31
 script = ExtResource("1_rmhju")
 
 [node name="PlayerImage" type="Sprite2D" parent="."]
-position = Vector2(1, -30)
+position = Vector2(37, 2)
+rotation = 1.5708
 texture = ExtResource("1_v1edj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -28,13 +47,22 @@ one_shot = true
 [node name="LaserStartPositions" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="LaserStartPositions"]
-position = Vector2(20, -125)
+position = Vector2(131, 21)
 
 [node name="Marker2D2" type="Marker2D" parent="LaserStartPositions"]
-position = Vector2(29, -121)
+position = Vector2(130, 10)
 
 [node name="Marker2D3" type="Marker2D" parent="LaserStartPositions"]
-position = Vector2(10, -121)
+position = Vector2(129, 32)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(132, 21)
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_hkv3m")
+texture = ExtResource("3_alvpy")
+lifetime = 0.2
+one_shot = true
 
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="timeout" from="GranadeTimer" to="." method="_on_granade_timer_timeout"]
