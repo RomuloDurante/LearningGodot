@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctftcfsngvuui"]
+[gd_scene load_steps=7 format=3 uid="uid://ctftcfsngvuui"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_rmhju"]
 [ext_resource type="Texture2D" uid="uid://b1enye26nproy" path="res://graphics/player/player.png" id="1_v1edj"]
@@ -22,6 +22,9 @@ color = Color(0, 0.72549, 0.72549, 0.588235)
 anim_speed_min = 16.0
 anim_speed_max = 16.0
 turbulence_noise_strength = 1.85
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4i146"]
+polygon = PackedVector2Array(11, -57, 25, -58, 32, -54, 34, -47, 42, -42, 45, -35, 50, -28, 64, -21, 79, -7, 86, -9, 96, -3, 108, -2, 114, 3, 124, 5, 124, 7, 130, 7, 134, 17, 134, 27, 131, 34, 122, 33, 123, 38, 113, 38, 107, 36, 104, 44, 96, 45, 95, 54, 61, 54, 61, 42, 42, 42, 25, 49, 9, 56, -10, 62, -32, 56, -38, 45, -42, 37, -47, 31, -53, 22, -54, 14, -59, 6, -60, -7, -59, -21, -55, -30, -47, -41, -32, -45, -26, -47, -22, -53, -13, -55, -2, -55)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(2, -1)
@@ -63,6 +66,9 @@ process_material = SubResource("ParticleProcessMaterial_hkv3m")
 texture = ExtResource("3_alvpy")
 lifetime = 0.2
 one_shot = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_4i146")
 
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="timeout" from="GranadeTimer" to="." method="_on_granade_timer_timeout"]
