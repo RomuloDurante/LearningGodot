@@ -4,7 +4,8 @@ extends CharacterBody2D
 signal laser_is_shooting(position, direciton)
 signal grenade_is_fire(position, direction)
 
-const SPEED = 500
+@export var  max_speed = 500
+var speed:int  = max_speed
 var can_laser:bool = true
 var can_granade:bool = true
 
@@ -13,7 +14,7 @@ func _process(_delta):
 	#move
 	var direction = Input.get_vector("left","right","up","down")
 	move_and_slide()
-	velocity = direction * 500 
+	velocity = direction * speed
 	
 	#rotate player
 	look_at(get_global_mouse_position())

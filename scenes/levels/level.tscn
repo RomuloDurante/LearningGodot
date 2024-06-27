@@ -117,6 +117,8 @@ position_smoothing_enabled = true
 [node name="LampLight" parent="." instance=ExtResource("14_gc82y")]
 position = Vector2(-1310, -758)
 
+[connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
+[connection signal="player_leave" from="Ground/House" to="." method="_on_house_player_leave"]
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
 [connection signal="grenade_is_fire" from="Player" to="." method="_on_player_grenade_is_fire"]
 [connection signal="laser_is_shooting" from="Player" to="." method="_on_player_laser_is_shooting"]

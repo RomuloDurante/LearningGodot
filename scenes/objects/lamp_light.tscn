@@ -11,6 +11,8 @@ height = 816.0
 polygon = PackedVector2Array(418, 0, 397, 48, 396, 25, 333, -40, 283, -63, -270, -62, -314, -50, -353, -13, -394, 40, -410, -13, -353, -74, -285, -99, -251, -86, 260, -84, 286, -96, 303, -98, 348, -81, 386, -49)
 
 [node name="LampLight" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -20)
