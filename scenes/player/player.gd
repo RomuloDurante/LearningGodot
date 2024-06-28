@@ -9,7 +9,6 @@ var speed:int  = max_speed
 var can_laser:bool = true
 var can_granade:bool = true
 
-
 func _process(_delta):
 	#move
 	var direction = Input.get_vector("left","right","up","down")
@@ -21,7 +20,10 @@ func _process(_delta):
 	
 	#laser shooting
 	var dir = (get_global_mouse_position() - position).normalized()
-	if Input.is_action_just_pressed("primary action") and can_laser:
+	if Input.is_action_just_pressed("primary action") and can_laser and Globals.laser_ammount > 0:
+		#dimiuir munição
+		Globals.laser_ammount -= 1
+		
 		#emit particles
 		$GPUParticles2D.emitting = true
 		#pickup a random positiom from marker 2d
@@ -36,18 +38,17 @@ func _process(_delta):
 		$LaserTimer.start()
 		
 	#launch granade
-	if Input.is_action_just_pressed("secondary action") and can_granade:
+	if Input.is_action_just_pressed("secondary action") and can_granade and Globals.grenade_ammount > 0:
+		#dimiuir munição
+		Globals.grenade_ammount -= 1
+		
 		var pos = $LaserStartPositions.get_children()[0].global_position
 		grenade_is_fire.emit(pos, dir)
 		can_granade = false
 		$GranadeTimer.start()
 
-	
-
-
 func _on_laser_timer_timeout():
 	can_laser = true
-
 
 func _on_granade_timer_timeout():
 	can_granade = true

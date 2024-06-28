@@ -11,14 +11,11 @@ func _process(delta):
 	# when laser is instatiate is moving automaticaly
 	position += direction * speed * delta
 
-
 func _on_body_entered(body):
 	queue_free()
 
 	if "hit" in body:
 		body.hit()
 		
-
-
 func _on_self_destruct_timeout():
 	queue_free()
