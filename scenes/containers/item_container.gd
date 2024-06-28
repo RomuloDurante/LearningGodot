@@ -2,6 +2,4 @@ extends StaticBody2D
 class_name ItemContainerParent
 
 func hit():
-	print("Object")
-
-
+	print("Objetc")

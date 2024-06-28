@@ -8,14 +8,14 @@ script = ExtResource("1_21q8y")
 
 [node name="Ground" type="Node2D" parent="."]
 
+[node name="Projectiles" type="Node2D" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("3_p360h")]
 position = Vector2(578, 339)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.6, 0.6)
 position_smoothing_enabled = true
-
-[node name="Projectiles" type="Node2D" parent="."]
 
 [connection signal="grenade_is_fire" from="Player" to="." method="_on_player_grenade_is_fire"]
 [connection signal="laser_is_shooting" from="Player" to="." method="_on_player_laser_is_shooting"]

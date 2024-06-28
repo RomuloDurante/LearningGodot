@@ -1,5 +1,5 @@
 extends ItemContainerParent
 
-func hit():
-	print("Box")
 
+func hit():
+	print("box")
