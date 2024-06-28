@@ -17,5 +17,7 @@ position = Vector2(578, 339)
 zoom = Vector2(0.6, 0.6)
 position_smoothing_enabled = true
 
+[node name="Ligths" type="Node" parent="."]
+
 [connection signal="grenade_is_fire" from="Player" to="." method="_on_player_grenade_is_fire"]
 [connection signal="laser_is_shooting" from="Player" to="." method="_on_player_laser_is_shooting"]
