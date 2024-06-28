@@ -10,3 +10,5 @@ func _process(_delta):
 
 
 
+func hit():
+	print("Damage")
