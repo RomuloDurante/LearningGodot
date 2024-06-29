@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dp415el4j6n85" path="res://graphics/objects/gate.png" id="1_xkf28"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dodid"]
-size = Vector2(863.5, 160.5)
+size = Vector2(863.5, 309.5)
 
 [node name="Gate" type="StaticBody2D"]
 collision_layer = 4
@@ -21,7 +21,7 @@ polygon = PackedVector2Array(-1430, -786, -1442, 582, -1358, 702, -1234, 766, -3
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(60.25, 683.75)
+position = Vector2(60.25, 758.25)
 shape = SubResource("RectangleShape2D_dodid")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

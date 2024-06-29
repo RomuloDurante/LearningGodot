@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cr08ytxmrmac1" path="res://scenes/objects/light_fan_animation.tscn" id="8_f0wok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3a672"]
-size = Vector2(375.75, 110)
+size = Vector2(375.75, 288)
 
 [node name="Inside" instance=ExtResource("1_stmgc")]
 script = ExtResource("2_xfjlb")
@@ -45,14 +45,14 @@ rotation = -1.5708
 
 [node name="Player" parent="." index="2"]
 position = Vector2(3254, 961)
-metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Infrastructure" type="Sprite2D" parent="Ligths" index="0"]
 position = Vector2(3505, -291)
 texture = ExtResource("7_jb6la")
 
 [node name="LightFanAnimation" parent="Ligths" index="1" instance=ExtResource("8_f0wok")]
-position = Vector2(3065, 540)
+position = Vector2(3071, 519)
 scale = Vector2(1.892, 1.906)
 autoplay = "default"
 
@@ -77,7 +77,7 @@ position = Vector2(-1037, -899)
 [node name="ExiteGateArea" type="Area2D" parent="." index="4"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExiteGateArea" index="0"]
-position = Vector2(3315.88, 1362)
+position = Vector2(3315.88, 1273)
 shape = SubResource("RectangleShape2D_3a672")
 
 [connection signal="body_entered" from="ExiteGateArea" to="." method="_on_exite_gate_area_body_entered"]
