@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d7ulmyh57pea"]
+[gd_scene load_steps=13 format=3 uid="uid://d7ulmyh57pea"]
 
 [ext_resource type="PackedScene" uid="uid://3vxhpmxb04r2" path="res://scenes/levels/level.tscn" id="1_stmgc"]
 [ext_resource type="PackedScene" uid="uid://bveyv3mqgsldy" path="res://scenes/objects/lamp_light.tscn" id="2_jmmbh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ss8mw3rryata" path="res://scenes/containers/box.tscn" id="5_wreym"]
 [ext_resource type="Texture2D" uid="uid://b62p6viswhwc5" path="res://graphics/lights/overlays/infrastructure.png" id="7_jb6la"]
 [ext_resource type="PackedScene" uid="uid://cr08ytxmrmac1" path="res://scenes/objects/light_fan_animation.tscn" id="8_f0wok"]
+[ext_resource type="PackedScene" uid="uid://i3h3pcin0df5" path="res://scenes/itens/item.tscn" id="11_1u1fp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3a672"]
 size = Vector2(375.75, 288)
@@ -79,5 +80,8 @@ position = Vector2(-1037, -899)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExiteGateArea" index="0"]
 position = Vector2(3315.88, 1273)
 shape = SubResource("RectangleShape2D_3a672")
+
+[node name="Item" parent="." index="6" instance=ExtResource("11_1u1fp")]
+position = Vector2(2423, 1169)
 
 [connection signal="body_entered" from="ExiteGateArea" to="." method="_on_exite_gate_area_body_entered"]
