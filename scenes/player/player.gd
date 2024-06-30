@@ -59,7 +59,7 @@ func add_item(type: String) -> void:
 	if type == "laser":
 		Globals.laser_ammount += 5
 	if type == "grenade":
-		Globals.laser_ammount += 1
+		Globals.grenade_ammount += 1
 	update_stats.emit()
 
 
