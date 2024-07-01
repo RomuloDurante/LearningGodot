@@ -125,10 +125,10 @@ collision_mask = 31
 position = Vector2(568, -42)
 metadata/_edit_group_ = true
 
-[node name="Item" parent="." index="8" instance=ExtResource("16_vhqs0")]
-position = Vector2(417, 183)
-
 [node name="Scout" parent="Enemies" index="0" instance=ExtResource("19_75ip4")]
 position = Vector2(117, -19)
+
+[node name="Item" parent="." index="8" instance=ExtResource("16_vhqs0")]
+position = Vector2(417, 183)
 
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]

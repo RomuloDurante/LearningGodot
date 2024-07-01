@@ -7,9 +7,10 @@ var can_laser:bool = true
 var rigth_gun_use:bool = true
 
 
+func hit():
+	print("Scout is hit")
+
 func _process(_delta):
-	
-	
 	if player_nearby:
 		look_at(Globals.player_position)
 		if can_laser:
