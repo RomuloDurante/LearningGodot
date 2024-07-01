@@ -10,6 +10,13 @@ func _ready():
 	for container in get_tree().get_nodes_in_group("Container"):
 		container.connect("open_item", _on_container_opened)
 	
+	for scout in get_tree().get_nodes_in_group("Scouts"):
+		scout.connect("laser", _on_scout_laser)
+	
+	
+func _on_scout_laser(pos,dir):
+	create_laser(pos,dir)
+
 func _on_container_opened(pos, dir):
 	var item = item_scene.instantiate()
 	item.position = pos
@@ -17,14 +24,8 @@ func _on_container_opened(pos, dir):
 	
 	$Items.call_deferred("add_child", item)
 	
-	
 func _on_player_laser_is_shooting(pos, dir):
-	var laser  = laser_scene.instantiate() as Area2D
-	laser.position = pos
-	laser.rotation_degrees = rad_to_deg(dir.angle()) + 90
-	laser.direction = dir
-	$Projectiles.add_child(laser)
-	$UI.update_laser_text()
+	create_laser(pos,dir)
 	
 func _on_player_grenade_is_fire(pos,player_direction):
 	var grenade = grenade_scene.instantiate() as RigidBody2D
@@ -46,3 +47,11 @@ func _on_player_update_stats():
 	$UI.update_laser_text()
 	$UI.update_greande_text()
 	
+func create_laser(pos, dir):
+	var laser  = laser_scene.instantiate() as Area2D
+	laser.position = pos
+	laser.rotation_degrees = rad_to_deg(dir.angle()) + 90
+	laser.direction = dir
+	$Projectiles.add_child(laser)
+	$UI.update_laser_text()
+

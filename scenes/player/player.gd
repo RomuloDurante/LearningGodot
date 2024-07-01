@@ -13,6 +13,8 @@ func _process(_delta):
 	#move
 	var direction = Input.get_vector("left","right","up","down")
 	move_and_slide()
+	Globals.player_position = global_position
+	
 	velocity = direction * speed
 	
 	#rotate player

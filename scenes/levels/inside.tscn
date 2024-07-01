@@ -44,9 +44,15 @@ rotation = -1.5708
 position = Vector2(-2755, -579)
 rotation = -1.5708
 
-[node name="Player" parent="." index="2"]
+[node name="Player" parent="." index="3"]
 position = Vector2(3254, 961)
 metadata/_edit_lock_ = true
+
+[node name="ExiteGateArea" type="Area2D" parent="." index="4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExiteGateArea" index="0"]
+position = Vector2(3315.88, 1273)
+shape = SubResource("RectangleShape2D_3a672")
 
 [node name="Infrastructure" type="Sprite2D" parent="Ligths" index="0"]
 position = Vector2(3505, -291)
@@ -74,12 +80,6 @@ position = Vector2(2886, -1188)
 
 [node name="SimpleLight" parent="Ligths" index="5" instance=ExtResource("4_dqmyb")]
 position = Vector2(-1037, -899)
-
-[node name="ExiteGateArea" type="Area2D" parent="." index="4"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExiteGateArea" index="0"]
-position = Vector2(3315.88, 1273)
-shape = SubResource("RectangleShape2D_3a672")
 
 [node name="Item" parent="." index="6" instance=ExtResource("11_1u1fp")]
 position = Vector2(2423, 1169)
