@@ -4,11 +4,18 @@ signal laser(pos, dir)
 
 var player_nearby: bool = false
 var can_laser:bool = true
+var can_damage:bool = true
 var rigth_gun_use:bool = true
-
+var health:int = 30
 
 func hit():
-	print("Scout is hit")
+	if can_damage:
+		can_damage = false
+		$Timers/invunerable.start()
+		$Sprite2D.material.set_shader_parameter("progress", 1.0);
+		health -= 10
+	if health <= 0:
+		queue_free()
 
 func _process(_delta):
 	if player_nearby:
@@ -20,7 +27,7 @@ func _process(_delta):
 			var dir: Vector2 = (Globals.player_position - position).normalized()
 			laser.emit(pos,dir)
 			can_laser = false
-			$LaserCoolDown.start()
+			$Timers/LaserCoolDown.start()
 
 			
 func _on_attack_area_body_entered(_body):
@@ -33,3 +40,7 @@ func _on_attack_area_body_exited(_body):
 
 func _on_laser_cool_down_timeout():
 	can_laser = true
+
+func _on_invunerable_timeout():
+	can_damage = true
+	$Sprite2D.material.set_shader_parameter("progress", 0);

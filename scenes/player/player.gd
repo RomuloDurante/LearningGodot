@@ -11,7 +11,10 @@ var can_granade:bool = true
 
 
 func hit():
-	print("Player is hit")
+	Globals.health -= 10
+	
+	if Globals.health <= 0:
+		queue_free()
 
 func _process(_delta):
 	#move

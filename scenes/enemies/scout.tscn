@@ -1,10 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cypvo5lj4fieq"]
+[gd_scene load_steps=7 format=3 uid="uid://cypvo5lj4fieq"]
 
 [ext_resource type="Texture2D" uid="uid://or18eqh53a50" path="res://graphics/enemies/scout.png" id="1_0h2o3"]
 [ext_resource type="Script" path="res://scenes/enemies/scout.gd" id="1_nsvv3"]
+[ext_resource type="Shader" path="res://scenes/enemies/scout.gdshader" id="2_m3qh2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f10uo"]
 size = Vector2(81, 146)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50dqc"]
+shader = ExtResource("2_m3qh2")
+shader_parameter/color = Color(0.71313, 0.858974, 0.951799, 1)
+shader_parameter/progress = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kk4po"]
 radius = 324.858
@@ -15,16 +21,19 @@ collision_mask = 31
 script = ExtResource("1_nsvv3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-49.5, 1)
 shape = SubResource("RectangleShape2D_f10uo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_50dqc")
 rotation = 1.5708
 texture = ExtResource("1_0h2o3")
 region_enabled = true
 region_rect = Rect2(14.7067, 14.3355, 149.021, 185.712)
 
 [node name="AttackArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
@@ -38,8 +47,14 @@ position = Vector2(78, -27)
 [node name="Marker2D2" type="Marker2D" parent="LaserSpawnPositions"]
 position = Vector2(89, 11)
 
-[node name="LaserCoolDown" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="LaserCoolDown" type="Timer" parent="Timers"]
+
+[node name="invunerable" type="Timer" parent="Timers"]
+one_shot = true
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
-[connection signal="timeout" from="LaserCoolDown" to="." method="_on_laser_cool_down_timeout"]
+[connection signal="timeout" from="Timers/LaserCoolDown" to="." method="_on_laser_cool_down_timeout"]
+[connection signal="timeout" from="Timers/invunerable" to="." method="_on_invunerable_timeout"]
